@@ -1,0 +1,27 @@
+@theme "main"
+
+mainbox {
+    background-color: @bg-col;
+    children: [inputbar, contentbox];
+}
+
+imagebox {
+    background-image: url("/home/ajani/.cache/current-wallpaper", height);
+    background-color: transparent;
+    width: 400px;
+    border-radius: 10px;
+    margin: 10px 0px 10px 10px;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+
+contentbox {
+    background-color: transparent;
+    orientation: horizontal;
+    children: [imagebox, listview];
+    padding: 20px;
+    spacing: 0;
+}
+
+

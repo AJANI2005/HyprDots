@@ -1,0 +1,11 @@
+@theme "main"
+
+window {
+    background-color: @bg-col;
+    border: 2px;
+    border-color: @border-col;
+    width: 300px;
+    height: 300px;
+    border-radius:10px;
+}
+
