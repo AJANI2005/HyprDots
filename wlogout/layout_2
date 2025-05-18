@@ -1,6 +1,6 @@
 {
     "label": "lock",
-    "action": "pidof hyprlock | hyprlock",
+    "action": "lockscreen.sh",
     "text": "Lock",
     "keybind": "l"
 }
@@ -13,24 +13,10 @@
 }
 
 {
-    "label": "suspend",
-    "action": "systemctl suspend",
-    "text": "Suspend",
-    "keybind": "u"
-}
-
-{
     "label": "shutdown",
     "action": "systemctl poweroff",
     "text": "Shutdown",
     "keybind": "s"
-}
-
-{
-    "label": "hibernate",
-    "action": "systemctl hibernate",
-    "text": "Hibernate",
-    "keybind": "h"
 }
 
 {

@@ -1,68 +1,114 @@
+* {
+    background-image: none;
+    font-size: 16px;
+}
+
+@import url("/home/ajani/.config/waybar/mocha.css");
+
 window {
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 14pt;
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.75);
+    background-color: transparent;
 }
 
 button {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100px;
-  border: 2px solid #171717;
-  border-radius: 0px;
-  background-color: #0a0a0a;
-  margin: 2.5px;
-  color: #ffffff;
-}
+    color: @text;
+    background-color: @crust;
+    border: none;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24%;
+    border-radius: 12px;
+    box-shadow: none;
 
-button:hover {
-  border: 2px solid #171717;
-  border-radius: 0px;
-  background-color: #0a0a0a;
-  color: #ffffff;
-}
-
-button:active {
-  border-radius: 0px;
-  border: 2px solid #171717;
-  background-color: #0a0a0a;
-  color: #ffffff;
+    transition:
+        background-color 0.25s ease,
+        border-radius 0.25s ease,
+        background-size 0.25s ease;
 }
 
 button:focus {
-  border-radius: 0px;
-  border: 2px solid #171717;
-  background-color: #0a0a0a;
-  color: #ffffff;
+    background-color: @mantle;
 }
 
+button:hover {
+    background-color: @surface0;
+    background-size: 30%;
+    color: @base;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+/* Uniform hover margin and roundness */
+button:hover#lock,
+button:hover#logout,
+button:hover#suspend,
+button:hover#shutdown,
+button:hover#hibernate,
+button:hover#reboot {
+    margin: 10px;
+    border-radius: 20px;
+}
+
+/* Individual buttons with consistent dark color */
 #lock {
-  background-image: image(url("./lock.png"));
-  border: 2px solid #171717;
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/lock_white.png"),
+        url("/usr/share/wlogout/icons/lock.png"),
+        url("/usr/local/share/wlogout/icons/lock.png")
+    );
+    border-radius: 20px 0 0 20px;
+    margin: 10px;
+    background-color: @crust;
 }
 
 #logout {
-  background-image: image(url("./logout.png"));
-  border: 2px solid #171717;
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/logout_white.png"),
+        url("/usr/share/wlogout/icons/logout.png"),
+        url("/usr/local/share/wlogout/icons/logout.png")
+    );
+    margin: 10px;
+    background-color: @crust;
 }
 
 #suspend {
-  background-image: image(url("./sleep.png"));
-  border: 2px solid #171717;
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/suspend_white.png"),
+        url("/usr/share/wlogout/icons/suspend.png"),
+        url("/usr/local/share/wlogout/icons/suspend.png")
+    );
+    margin: 10px;
+    background-color: @crust;
 }
 
 #shutdown {
-  background-image: image(url("./power.png"));
-  border: 2px solid #171717;
-}
-
-#reboot {
-  background-image: image(url("./restart.png"));
-  border: 2px solid #171717;
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/shutdown_white.png"),
+        url("/usr/share/wlogout/icons/shutdown.png"),
+        url("/usr/local/share/wlogout/icons/shutdown.png")
+    );
+    margin: 10px;
+    background-color: @crust;
 }
 
 #hibernate {
-  background-image: image(url("./restart.png"));
-  border: 2px solid #171717;
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/hibernate_white.png"),
+        url("/usr/share/wlogout/icons/hibernate.png"),
+        url("/usr/local/share/wlogout/icons/hibernate.png")
+    );
+    margin: 10px;
+    background-color: @crust;
 }
+
+#reboot {
+    background-image: image(
+        url("$HOME/.config/wlogout/icons/reboot_white.png"),
+        url("/usr/share/wlogout/icons/reboot.png"),
+        url("/usr/local/share/wlogout/icons/reboot.png")
+    );
+    border-radius: 0 20px 20px 0;
+    margin: 10px;
+    background-color: @crust;
+}
+
