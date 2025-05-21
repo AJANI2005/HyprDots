@@ -1,7 +1,0 @@
-;; Variables
-(include "variables.yuck")
-
-;; Top Bar
-(include "bar/eww.yuck")
-(include "panel/eww.yuck")
-
