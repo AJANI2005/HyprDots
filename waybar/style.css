@@ -51,7 +51,7 @@ button:hover {
     background-color: #eb4d4b;
 }
 
-
+#temperature,
 #custom-power,
 #pulseaudio,
 #clock,
@@ -78,6 +78,10 @@ button:hover {
     padding-right: 2px;
 }
 
+#temperature {
+    color: @lavendar;
+    border-bottom: 2px solid @blue;
+}
 #tray {
     color: @blue;
     border-bottom: 2px solid @blue;

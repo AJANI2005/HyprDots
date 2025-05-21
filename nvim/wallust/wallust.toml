@@ -1,0 +1,13 @@
+backend = "fastresize"
+color_space = "lch"
+palette = "dark"
+
+[templates]
+ewwbar.template = 'colors-ewwbar.scss'
+ewwbar.target = '~/Hypr/colors/colors-ewwbar.scss'
+hypr.template = 'colors-hypr.conf'
+hypr.target = '~/Hypr/colors/colors-hypr.conf'
+rofi.template = 'colors-rofi.rasi'
+rofi.target = '~/Hypr/colors/colors-rofi.rasi'
+main_css.template = 'colors-main.css'
+main_css.target = '~/Hypr/colors/colors-main.css'

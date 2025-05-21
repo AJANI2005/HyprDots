@@ -1,0 +1,10 @@
+// Top Bar
+@import "bar/eww.scss";
+@import "panel/eww.scss";
+
+// Unsets
+button,
+calendar,
+slider {
+  all: unset;
+}

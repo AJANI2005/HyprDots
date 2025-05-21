@@ -1,0 +1,158 @@
+
+
+
+(defwidget datetime []
+  (box :class "datetime" :orientation "v" :space-evenly false
+    (label :class "time" :text "${time}")
+    (label :class "date" :text "${date2}")
+  )
+)
+
+(defwidget settings []
+  (box :valign "start" 
+    (box :class "sliders" :orientation "h" 
+        ;; Volume
+        (box
+            :class "volume"
+            :orientation "v"
+            :space-evenly false
+            :halign "center"
+          (label :class "volume-icon" :text "󰕾")
+          (scale 
+            :orientation "v"
+            :flipped true
+            :min "0"
+            :max "100"
+            :value volume 
+            :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+          )
+        )
+        ;; Brightness
+        (box
+            :class "brightness"
+            :orientation "v"
+            :space-evenly false
+            :halign "center"
+          (label :class "brightness-icon" :text "󰃞")
+          (scale 
+            :orientation "v"
+            :flipped true
+            :min 5 
+            :max maxBrightness
+            :value brightness
+            :onchange "sleep 1 && brightnessctl set {}"
+          )
+        )
+    )
+    (box :class "togglers" :orientation "v" :space-evenly false
+        (btn :class "toggle-notification" :cursor "pointer" :onclick toggle-notif 
+            (label :class "icon" :text { status-notif == "on" ? "󰂚" : "󰂛" }) 
+        )
+        (btn :class "toggle-sound" :cursor "pointer" :onclick toggle-sound 
+            (label :class "icon" :text { status-sound == "on" ? "󰕾" : "󰖁" })
+        )
+        (btn :class "toggle-bluetooth" :cursor "pointer" :onclick toggle-bluetooth 
+            (label :class "icon" :text { status-bluetooth == "on" ? "󰂯" : "󰂲" })
+        )
+        (btn :class "toggle-wifi" :cursor "pointer" :onclick toggle-wifi 
+            (label :class "icon" :text { status-wifi == "on" ? "󰤨" : "󰤭" })
+        )
+    )
+  ) 
+)
+
+(defwidget usage [value thickness]
+  (box
+      :halign "center"
+      :valign "center"
+      (circular-progress
+        :value value
+        :start-at 75 
+        :thickness thickness 
+        :class "circular-progress"
+        :clockwise false
+      )
+  )
+)
+
+(defwidget metrics []
+  (box :class "metrics" :orientation "h" :space-evenly false
+    (box :orientation "v" :space-evenly false :class "ram"
+      (usage :value {EWW_RAM.used_mem_perc} :thickness 40 :class "ram")
+      (label :text "RAM")
+    )
+    (box :orientation "v" :space-evenly false :class "cpu"
+      (usage :value {EWW_CPU.avg} :thickness 40 :class "cpu")
+      (label :text "CPU")
+    )
+    (box :orientation "v" :space-evenly false :class "disk"
+      (usage :value {EWW_DISK["/"].used_perc } :thickness 40 :class "disk")
+      (label :text "DISK")
+    )
+    (box :orientation "v" :space-evenly false :class "temp"
+        (box :space-evenly false
+          (label :class "icon" :text "")
+          (box :orientation "v"
+            (label :halign "start" :text "CPU TEMP: ${cpu_temp}")
+            (label :halign "start" :text "GPU TEMP: ${gpu_temp}")
+          )
+        )
+    )
+  )
+)
+
+(defwidget wallpaper []
+    (btn
+        :class "wallpaper"
+        :cursor "pointer"
+        :onclick "${rofi-wallpaper} &"
+        :orientation "v"
+        (label :text "󰸉 Set BG")
+    )
+)
+
+(defwidget nightmode []
+    (btn 
+        :class {"nightmode " + (nightmode ? "nightmode-active" : "" )}
+        :cursor "pointer"
+        :onclick "${toggle-nightmode} &"
+        :orientation "v"
+        (label :text "󰖔 Night mode")
+    )
+)
+
+(defwidget panel []
+  (box 
+       :orientation "v"
+       :space-evenly false
+    (datetime)
+    (box
+        (settings)
+        (box :orientation "v" :space-evenly false
+          (calendar :class "calendar")
+          (box
+            (wallpaper)
+            (nightmode)
+          )
+        )
+    )
+    (metrics)
+  )
+)
+
+(defwindow panel
+           :monitor 0
+           :geometry (geometry :x "5"
+                               :y "10"
+                               :width "30%"
+                               :height "0%"
+                               :anchor "top right")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+    (panel)
+
+
+)
+
